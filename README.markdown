@@ -10,7 +10,7 @@ Sample Code
 
     (save-doc db collection {:name "Gilbert" :title "Mr"})
     (find-docs db collection {:name "Gilbert"})
-    (drop-docs db collection {:title "Mr"})`
+    (delete-docs db collection {:title "Mr"})`
 
 For more details, check the source code or the tests.
 
@@ -25,6 +25,5 @@ You could also compile/install the project using maven (e.g mvn install -Dmaven.
 Links
 ---------
 * [MongoDB](http://www.mongodb.com)
-
 * [mongo-java-driver](http://www.mongodb.org/display/DOCS/Java+Language+Center)
 
