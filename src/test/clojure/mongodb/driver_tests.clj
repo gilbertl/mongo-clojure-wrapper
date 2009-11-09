@@ -39,6 +39,20 @@
     (is (= (count all-docs) 1))
     (is (= to-update (first all-docs)))))
 
+(comment
+(deftest save-and-direct-update-test
+  (let [to-save (struct blog-post "Techcrunch sucks." "This is why.")
+        to-update (struct blog-post
+                    "Techcrunch doesn't suck." "Here's why.")]
+    (do
+      (dorun (take 3 (repeatedly (fn [] (save-doc db collection to-save)))))
+      (is (= (count (find-docs db collection {})) 3))
+      (update-docs db collection to-save to-update)
+      (is (= (count
+               (find-docs db collection {:title "Techcrunch doesn't suck."}))
+             3)))))
+)
+
 (deftest save-and-delete-individual-test
   (do
     (map #(save-doc db collection (struct blog-post % %)) (range 10))

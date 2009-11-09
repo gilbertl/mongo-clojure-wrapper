@@ -48,7 +48,6 @@
             m)]
   (new BasicDBObject (stringify-keys id-converted))))
 
-
 (defn save-doc
   "insert document into given db and collection"
   [db-config coll-name m]
@@ -77,6 +76,16 @@
     (map to-clojure-map dbos)))
 
 (def single-doc (comp first find-docs))
+
+(defn update-docs
+  "update the first document found by 'query' with 'update'"
+  ; for some reason, the updateMulti method doesn't upload more than one row
+  ; hopefully, future releases will fix that
+  [db-config coll-name query update]
+  (let [c (coll db-config coll-name)
+        query (to-db-obj query)
+        update (to-db-obj update)]
+    (to-clojure-map (.updateMulti c query update))))
 
 (defn create-index
   "creates index on given attributes; 1 for ascending; -1 for descending"
