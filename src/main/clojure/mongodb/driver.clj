@@ -76,6 +76,8 @@
          (.find (coll db-config coll-name) (to-db-obj m))]
     (map to-clojure-map dbos)))
 
+(def single-doc (comp first find-docs))
+
 (defn create-index
   "creates index on given attributes; 1 for ascending; -1 for descending"
   [db-config coll-name m]

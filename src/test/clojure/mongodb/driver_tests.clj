@@ -23,11 +23,9 @@
   (let [to-save (struct blog-post "Techcrunch sucks." "This is why.")
         saved-doc (save-doc db collection to-save)
         found-by-title
-          (first
-            (find-docs db collection {:title "Techcrunch sucks."}))
+          (single-doc db collection {:title "Techcrunch sucks."})
         found-by-id
-          (first
-            (find-docs db collection {:_id (:_id saved-doc)}))]
+          (single-doc db collection {:_id (:_id saved-doc)})]
     (is (= (select-keys found-by-title (keys to-save)) to-save))
     (is (= found-by-title saved-doc))
     (is (= found-by-id saved-doc))))
@@ -57,5 +55,3 @@
   (do
     (create-index db collection {:title 1})
     (some #(= (:key %) {:title 1}) (indices db collection))))
-
-
