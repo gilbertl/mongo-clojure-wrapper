@@ -16,11 +16,11 @@ For more details, check the source code or the tests.
 
 Usage
 ----------
-To use, add mongo-clojure-wrapper-0.1.jar to your classpath and include the namespace 'mongodb.driver.
+Add mongo-clojure-wrapper.jar to your classpath and include the namespace 'mongodb.driver.
 
-mongo-clojure-wrapper-0.1.jar contains all the dependencies needed. 
+OR
 
-You could also compile/install the project using maven (e.g mvn install -Dmaven.test.skip-true).
+Use leiningen and add '[mongo-clojure-wrapper "0.1.0"]' to your project.clj.
 
 Links
 ---------
